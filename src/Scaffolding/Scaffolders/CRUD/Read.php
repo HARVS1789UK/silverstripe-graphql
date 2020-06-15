@@ -38,7 +38,8 @@ class Read extends ListQueryScaffolder implements OperationResolver, CRUDInterfa
         parent::__construct(null, null, $this, $dataObjectClass);
         $filter = Injector::inst()->create(DataObjectQueryFilter::class, $dataObjectClass)
             ->setFilterKey(self::FILTER)
-            ->setExcludeKey(self::EXCLUDE);
+            ->setExcludeKey(self::EXCLUDE)
+            ->setChainableParent($this);
         $this->setQueryFilter($filter);
     }
 
