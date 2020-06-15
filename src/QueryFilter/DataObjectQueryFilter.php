@@ -272,6 +272,10 @@ class DataObjectQueryFilter implements ConfigurationApplier
      */
     public function getFiltersForField($fieldName)
     {
+        if (strpos($fieldName, '.') !== false) {
+            $fieldName = preg_replace("/\./", "__", $fieldName);
+        }
+
         if (isset($this->filteredFields[$fieldName])) {
             return $this->filteredFields[$fieldName];
         }
